@@ -1,4 +1,5 @@
 import pygame
+import time
 from Ship import *
 from vector2 import *
 
@@ -10,6 +11,9 @@ def main():
 
     center = vector2(150,150)
     aship = Ship(center, 8)
+
+    deltaTime = 0
+    lastTime = time.time()
 
     while(True):
 
@@ -25,6 +29,8 @@ def main():
 
         pygame.display.flip()
 
+        deltaTime = time.time() - lastTime
+        lastTime = time.time()
         #Personagem
         #screen.flip()
     

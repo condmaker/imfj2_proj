@@ -1,12 +1,15 @@
 import pygame
 from Ship import *
+from vector2 import *
 
 def main():
 
     #ola
     pygame.init()
     screen = pygame.display.set_mode( (300, 300) )
-    aship = Ship(0,0)
+
+    center = vector2(150,150)
+    aship = Ship(center, 8)
 
     while(True):
 

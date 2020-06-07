@@ -82,7 +82,7 @@ class vector2:
         else:
             raise(InvalidOperationException("dot", type(self), type(v)))
 
-   ''' def cross(self, v):
+    ''' def cross(self, v):
         if (isinstance(v, vector2)):
             return vector2(self.y * 1 - 1 * v.y, 1 - self.x * 1)
         else:
@@ -97,15 +97,15 @@ class vector2:
         d = 1.0 / self.magnitude()
         return vector2(self.x * d, self.y * d)
 
-    '''def to_np3(self):
-        return np.array([self.x, self.y, self.z])
+    def to_np2(self):
+        return np.array([self.x, self.y])
 
-    def to_np4(self, w = 1):
-        return np.array([self.x, self.y, self.z, w])
+    def to_np3(self, w = 1):
+        return np.array([self.x, self.y, w])
 
     @staticmethod
     def from_np(np_array):
-        return vector2(np_array[0], np_array[1], np_array[2])'''
+        return vector2(np_array[0], np_array[1])
 
 def dot_product(v1, v2):
     return v1.dot(v2)

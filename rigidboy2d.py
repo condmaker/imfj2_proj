@@ -1,4 +1,5 @@
 
 class Rigidbody2d:
     
-    def addForce():
+    def addForce(self):
+        pass

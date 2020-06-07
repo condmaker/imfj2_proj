@@ -1,4 +1,5 @@
 import pygame
+import time
 from Ship import *
 
 def main():
@@ -7,6 +8,9 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode( (300, 300) )
     aship = Ship(0,0)
+
+    deltaTime = 0
+    lastTime = time.time()
 
     while(True):
 
@@ -22,6 +26,8 @@ def main():
 
         pygame.display.flip()
 
+        deltaTime = time.time() - lastTime
+        lastTime = time.time()
         #Personagem
         #screen.flip()
     

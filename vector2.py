@@ -1,7 +1,9 @@
-import math
-import numpy as np
+# Ficheiro Vector2 pego do professor Diogo Andrade
 
-class InvalidOperationException(Exception):
+import math
+import random
+
+class InvalidOperationExceptionVec2(Exception):
     def __init__(self, op, type1, type2):
         self.op = op
         self.type1 = type1
@@ -11,7 +13,6 @@ class InvalidOperationException(Exception):
         return "Invalid operation (" + self.op + ") between " + str(self.type1) + " and " + str(self.type2)
 
 class vector2:
-  
     def __init__(self, x = 0, y = 0):
         self.x = x
         self.y = y
@@ -23,37 +24,37 @@ class vector2:
         if (isinstance(v, vector2)):
             return vector2(self.x + v.x, self.y + v.y)
         else:
-            raise(InvalidOperationException("add", type(self), type(v)))
+            raise(InvalidOperationExceptionVec2("add", type(self), type(v)))
 
     def __sub__(self, v):
         if (isinstance(v, vector2)):
             return vector2(self.x - v.x, self.y - v.y)
         else:
-            raise(InvalidOperationException("sub", type(self), type(v)))
+            raise(InvalidOperationExceptionVec2("sub", type(self), type(v)))
 
     def __mul__(self, v):
         if (isinstance(v, (int, float))):
             return vector2(self.x * v, self.y * v)
         else:
-            raise(InvalidOperationException("mult", type(self), type(v)))
+            raise(InvalidOperationExceptionVec2("mult", type(self), type(v)))
 
     def __truediv__(self, v):
         if (isinstance(v, (int, float))):
             return vector2(self.x / v, self.y / v)
         else:
-            raise(InvalidOperationException("mult", type(self), type(v)))
+            raise(InvalidOperationExceptionVec2("mult", type(self), type(v)))
 
     def __eq__(self, v):
         if (isinstance(v, vector2)):
             return (((self - v).magnitude()) < 0.0001)
         else:
-            raise(InvalidOperationException("eq", type(self), type(v)))
+            raise(InvalidOperationExceptionVec2("eq", type(self), type(v)))
 
     def __ne__(self, v):
         if (isinstance(v, vector2)):
             return (((self - v).magnitude()) > 0.0001)
         else:
-            raise(InvalidOperationException("neq", type(self), type(v)))
+            raise(InvalidOperationExceptionVec2("neq", type(self), type(v)))
 
     def __isub__(self, v):
         return self - v
@@ -80,13 +81,7 @@ class vector2:
         if (isinstance(v, vector2)):
             return self.x * v.x + self.y * v.y
         else:
-            raise(InvalidOperationException("dot", type(self), type(v)))
-
-   ''' def cross(self, v):
-        if (isinstance(v, vector2)):
-            return vector2(self.y * 1 - 1 * v.y, 1 - self.x * 1)
-        else:
-            raise(InvalidOperationException("dot", type(self), type(v)))'''
+            raise(InvalidOperationExceptionVec2("dot", type(self), type(v)))
 
     def normalize(self):
         d = 1.0 / self.magnitude()
@@ -97,18 +92,12 @@ class vector2:
         d = 1.0 / self.magnitude()
         return vector2(self.x * d, self.y * d)
 
-    '''def to_np3(self):
-        return np.array([self.x, self.y, self.z])
-
-    def to_np4(self, w = 1):
-        return np.array([self.x, self.y, self.z, w])
+    def tuple2(self):
+        return (self.x, self.y)
 
     @staticmethod
-    def from_np(np_array):
-        return vector2(np_array[0], np_array[1], np_array[2])'''
+    def random():
+        return vector2(random.uniform(-1.0, 1.0), random.uniform(-1.0, 1.0)).normalized()
 
 def dot_product(v1, v2):
     return v1.dot(v2)
-
-'''def cross_product(v1, v2):
-    return v1.cross(v2)'''

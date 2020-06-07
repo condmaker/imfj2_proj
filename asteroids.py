@@ -17,15 +17,27 @@ def main():
 
     while(True):
 
+        keypressed = pygame.key.get_pressed()
         
+
         for event in pygame.event.get():
             if (event.type == pygame.QUIT):
                 return
+
+        if(keypressed[pygame.K_w]):
+            aship.move_ship(-0.5)
+        
+        if(keypressed[pygame.K_s]):
+            aship.move_ship(0.5)
+
+
+
 
         screen.fill( (0,0,59) )
 
         #pygame.draw.polygon(screen, (200,200,0), [(150,100),(140,160),(160,160)])
         aship.render_ship(screen)
+        aship.UpdateCurrentVelocity(deltaTime)
 
         pygame.display.flip()
 

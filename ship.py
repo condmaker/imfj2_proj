@@ -1,8 +1,8 @@
 import pygame
-from Rigidbody2d import *
+from rigidbody2d import *
 from vector2 import *
 
-class Ship(Rigidbody2d):
+class ship(rigidbody2d):
 
     def __init__(self, center, scale):
         super().__init__(center)
@@ -33,5 +33,5 @@ class Ship(Rigidbody2d):
         ]
 
     def move_ship(self, moveVect):
-        self.AddForce(self.normalVect * moveVect)
+        self.add_force(self.normalVect * moveVect)
     

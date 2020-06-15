@@ -32,6 +32,12 @@ def main():
         if(keypressed[pygame.K_s]):
             aship.move_ship(5000) # Valor em Newton
 
+        if(keypressed[pygame.K_a]):
+            aship.rotate_ship(-2, deltaTime) # Valor em Newton
+
+        if(keypressed[pygame.K_d]):
+            aship.rotate_ship(2, deltaTime) # Valor em Newton
+
 
 
 

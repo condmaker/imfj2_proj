@@ -5,6 +5,7 @@ class rigidbody2d:
 
     def __init__(self, center):
         self.center = center
+        self.previousPos = center
         self.mass = 200 #kg
 
         self.acceleration = vector2(0,0)
@@ -30,19 +31,27 @@ class rigidbody2d:
 
         totalAcceleration = vector2(0,0)
 
+
+        #Add all forces together 
         for force in self.allForcesVect:
             totalAcceleration += force
+            self.allForcesVect.remove(force)
 
         self.acceleration = totalAcceleration
 
+
+        self.previousPos = self.center
+
         self.currentVelocity = self.prevVelocity + (self.acceleration * deltaTime)
+        print(self.currentVelocity)
         self.prevVelocity = self.currentVelocity
-        self.center += self.currentVelocity # <- Change this to position eq.
+
+        self.center = self.previousPos + self.currentVelocity * deltaTime # <- Change this to position eq.
         self.acceleration = vector2(0,0)
 
-        totalAcceleration = 0
 
-    def update_angular_velocity:
+    def update_angular_velocity(self):
+        pass
 
 
     def get_center(self):

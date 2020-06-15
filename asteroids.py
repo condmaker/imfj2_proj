@@ -27,10 +27,10 @@ def main():
                 return
 
         if(keypressed[pygame.K_w]):
-            aship.move_ship(-0.2) # Valor em Newton
+            aship.move_ship(-5000) # Valor em Newton
         
         if(keypressed[pygame.K_s]):
-            aship.move_ship(0.2) # Valor em Newton
+            aship.move_ship(5000) # Valor em Newton
 
 
 

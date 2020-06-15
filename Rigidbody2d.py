@@ -51,7 +51,7 @@ class rigidbody2d:
 
         self.currentVelocity = self.prevVelocity + (self.acceleration * deltaTime)
 
-        # Velocity cap so that the ship doesn't fly away
+        '''# Velocity cap so that the ship doesn't fly away
         if (self.currentVelocity.y >= 0.5):
             self.currentVelocity.y = 0.5
         elif (self.currentVelocity.y <= -0.5):
@@ -59,18 +59,11 @@ class rigidbody2d:
         if (self.currentVelocity.x >= 0.5):
             self.currentVelocity.x = 0.5
         elif (self.currentVelocity.x <= -0.5):
-            self.currentVelocity.x = -0.5
-
-        print(self.currentVelocity)
+            self.currentVelocity.x = -0.5'''
 
         self.prevVelocity = self.currentVelocity
-<<<<<<< HEAD
-
         self.center = self.previousPos + self.currentVelocity * deltaTime # <- Change this to position eq.
-=======
-        self.center += self.currentVelocity # <- Change this to position eq.
 
->>>>>>> marco_branch
         self.acceleration = vector2(0,0)
 
 

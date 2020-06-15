@@ -17,15 +17,11 @@ class ship(rigidbody2d):
         self.velocity = vector2(0,0)
         self.acceleration = vector2(0,0)
 
-        self.construct_ship()
  
     def render_ship(self, screen):
-<<<<<<< HEAD
 
-=======
         self.construct_ship()
         
->>>>>>> marco_branch
         newLines = []
 
         # Rotates all the lines accordingly (need to figure out the angles)
@@ -36,24 +32,25 @@ class ship(rigidbody2d):
             finalVertice.x = anotherVertice.x * math.cos(self.currentRotation) - anotherVertice.y * math.sin(self.currentRotation)
             finalVertice.y = anotherVertice.y * math.cos(self.currentRotation) + anotherVertice.x * math.sin(self.currentRotation)
 
-            self.normalVect.x = math.cos(self.currentRotation) - math.sin(self.currentRotation)
-            self.normalVect.y = math.sin(self.currentRotation) + math.cos(self.currentRotation)
-
+            self.normalVect.x = math.sin(self.currentRotation)
+            self.normalVect.y = math.cos(self.currentRotation)
             point = (finalVertice + self.center).to_np2()
             newLines.append(point)
 
         self.line = newLines
 
-        self.construct_ship()
+        
 
         pygame.draw.polygon(screen, (200,200,0) , self.line, 2)
 
     def construct_ship(self):
+
         self.center = self.get_center()
 
-        normVect = self.normalVect
-        tanVect = self.tangentVect
+        normVect = vector2(0,1)
+        tanVect = vector2(1,0)
 
+        
         newVect = vector2(0, 3)
 
         self.line = [
@@ -64,6 +61,7 @@ class ship(rigidbody2d):
 
     def move_ship(self, moveVect):
         self.add_force(self.normalVect * moveVect)
+        print(self.normalVect)
 
 
     def rotate_ship(self, rotateVect, deltaTime):

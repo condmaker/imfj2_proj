@@ -50,9 +50,27 @@ class rigidbody2d:
         self.previousPos = self.center
 
         self.currentVelocity = self.prevVelocity + (self.acceleration * deltaTime)
+
+        # Velocity cap so that the ship doesn't fly away
+        if (self.currentVelocity.y >= 0.5):
+            self.currentVelocity.y = 0.5
+        elif (self.currentVelocity.y <= -0.5):
+            self.currentVelocity.y = -0.5
+        if (self.currentVelocity.x >= 0.5):
+            self.currentVelocity.x = 0.5
+        elif (self.currentVelocity.x <= -0.5):
+            self.currentVelocity.x = -0.5
+
+        print(self.currentVelocity)
+
         self.prevVelocity = self.currentVelocity
+<<<<<<< HEAD
 
         self.center = self.previousPos + self.currentVelocity * deltaTime # <- Change this to position eq.
+=======
+        self.center += self.currentVelocity # <- Change this to position eq.
+
+>>>>>>> marco_branch
         self.acceleration = vector2(0,0)
 
 
@@ -66,7 +84,7 @@ class rigidbody2d:
         # Updates the old angular velocity with the new one
         self.prevAngVelocity = self.currentAngVelocity
         self.prevRotation = self.currentRotation
-        self.angularAcceleration = vector2(0,0)
+        self.angularAcceleration = 0
 
     def get_center(self):
         return self.center

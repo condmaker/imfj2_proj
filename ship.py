@@ -20,7 +20,12 @@ class ship(rigidbody2d):
         self.construct_ship()
  
     def render_ship(self, screen):
+<<<<<<< HEAD
 
+=======
+        self.construct_ship()
+        
+>>>>>>> marco_branch
         newLines = []
 
         # Rotates all the lines accordingly (need to figure out the angles)
@@ -64,5 +69,4 @@ class ship(rigidbody2d):
     def rotate_ship(self, rotateVect, deltaTime):
         # Updates the angular velocity
         self.add_torque(rotateVect)
-        self.update_angular_velocity(deltaTime)
     

@@ -50,7 +50,6 @@ class rigidbody2d:
         self.previousPos = self.center
 
         self.currentVelocity = self.prevVelocity + (self.acceleration * deltaTime)
-        print(self.currentVelocity)
         self.prevVelocity = self.currentVelocity
 
         self.center = self.previousPos + self.currentVelocity * deltaTime # <- Change this to position eq.

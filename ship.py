@@ -61,7 +61,6 @@ class ship(rigidbody2d):
 
     def move_ship(self, moveVect):
         self.add_force(self.normalVect * moveVect)
-        print(self.normalVect)
 
 
     def rotate_ship(self, rotateVect, deltaTime):

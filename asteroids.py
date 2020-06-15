@@ -46,6 +46,7 @@ def main():
         #pygame.draw.polygon(screen, (200,200,0), [(150,100),(140,160),(160,160)])
         aship.render_ship(screen)
         aship.update_current_velocity(deltaTime)
+        aship.update_angular_velocity(deltaTime)
 
         pygame.display.flip()
 

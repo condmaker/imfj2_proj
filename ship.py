@@ -32,7 +32,7 @@ class ship(rigidbody2d):
             finalVertice.x = anotherVertice.x * math.cos(self.currentRotation) - anotherVertice.y * math.sin(self.currentRotation)
             finalVertice.y = anotherVertice.y * math.cos(self.currentRotation) + anotherVertice.x * math.sin(self.currentRotation)
 
-            self.normalVect.x = math.sin(self.currentRotation)
+            self.normalVect.x = -math.sin(self.currentRotation)
             self.normalVect.y = math.cos(self.currentRotation)
             point = (finalVertice + self.center).to_np2()
             newLines.append(point)

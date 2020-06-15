@@ -16,7 +16,6 @@ class ship(rigidbody2d):
 
         self.velocity = vector2(0,0)
         self.acceleration = vector2(0,0)
-
  
     def render_ship(self, screen):
         self.construct_ship()
@@ -26,7 +25,20 @@ class ship(rigidbody2d):
         # Rotates all the lines accordingly (need to figure out the angles)
         for point in self.line:
             anotherVertice = vector2.from_np(point) - self.center
-            finalVertice = vector2(anotherVertice.x * math.cos(270), anotherVertice.y * math.sin(270))
+            finalVertice = vector2(0, 0)
+            finalVertice.x = anotherVertice.x * math.cos(self.currentRotation) - anotherVertice.y * math.sin(self.currentRotation)
+            finalVertice.y = anotherVertice.y * math.cos(self.currentRotation) + anotherVertice.x * math.sin(self.currentRotation)
+
+            self.normalVect.x = math.cos(self.currentRotation) - math.sin(self.currentRotation)
+            self.normalVect.y = math.sin(self.currentRotation) + math.cos(self.currentRotation)
+
+            self.tangentVect.x = math.cos(self.currentRotation + 90) - math.sin(self.currentRotation + 90)
+            self.tangentVect.y = math.sin(self.currentRotation + 90) + math.cos(self.currentRotation + 90)
+
+            print(self.normalVect)
+
+            self.normalVect.normalize()
+
             point = (finalVertice + self.center).to_np2()
             newLines.append(point)
 
@@ -35,13 +47,14 @@ class ship(rigidbody2d):
         pygame.draw.polygon(screen, (200,200,0) , self.line, 2)
 
     def construct_ship(self):
-    
         self.center = self.get_center()
 
+        newVect = vector2(0, 3)
+
         self.line = [
-            (self.center - (self.normalVect * self.scale * 2)).to_np2(),
-            (self.center + (self.tangentVect * self.scale)).to_np2(),
-            (self.center - (self.tangentVect * self.scale)).to_np2()
+            (self.center - (self.normalVect * self.scale * 3)).to_np2(),
+            (self.center + (newVect + self.tangentVect * self.scale)).to_np2(),
+            (self.center - (-newVect + self.tangentVect * self.scale)).to_np2()
         ]   
 
     def move_ship(self, moveVect):

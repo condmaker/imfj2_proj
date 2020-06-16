@@ -6,7 +6,7 @@ class rigidbody2d:
     def __init__(self, center):
         self.center = center
         self.previousPos = center
-        self.mass = 200 #kg
+        self.mass = 200 
 
         self.acceleration = vector2(0,0)
         self.angularAcceleration = 0
@@ -24,49 +24,43 @@ class rigidbody2d:
         self.currentRotation = 0
         self.totalForce = vector2(0,0)
         self.inertiaMoment = 2
-        pass
 
+    # Adds a force to the object
     def add_force(self, moveVect):
-        self.allForcesVect.append(moveVect / self.mass)  #a = F/m
-        pass
+        self.allForcesVect.append(moveVect / self.mass)  
 
-    # Torque - Vector2 to where the object will rotate to, torque given in Newton
+    # Torque - Vector2 to where the object will rotate to, in Newton.
     def add_torque(self, torque):
         self.angularAcceleration = torque / self.inertiaMoment
 
+    # Updates the current velocity of the instanced object.
     def update_current_velocity(self, deltaTime):
-
+        # Initializes the 'totalAcceleration' variable as a vector2
         totalAcceleration = vector2(0,0)
 
-
-        #Add all forces together 
+        # Add all forces together 
         for force in self.allForcesVect:
             totalAcceleration += force
             self.allForcesVect.remove(force)
 
+        # Equalizes the current acceleration to the total acceleration with 
+        # all forces in consideration
         self.acceleration = totalAcceleration
-
-
+        # Sets the previous position as the center
         self.previousPos = self.center
-
+        # Updates current velocity
         self.currentVelocity = self.prevVelocity + (self.acceleration * deltaTime)
-
-        '''# Velocity cap so that the ship doesn't fly away
-        if (self.currentVelocity.y >= 0.5):
-            self.currentVelocity.y = 0.5
-        elif (self.currentVelocity.y <= -0.5):
-            self.currentVelocity.y = -0.5
-        if (self.currentVelocity.x >= 0.5):
-            self.currentVelocity.x = 0.5
-        elif (self.currentVelocity.x <= -0.5):
-            self.currentVelocity.x = -0.5'''
-
+        # Sets previous velocity equal to the current one in order to make 
+        # other updates possible
         self.prevVelocity = self.currentVelocity
-        self.center = self.previousPos + self.currentVelocity * deltaTime # <- Change this to position eq.
-
+        # Utilizes the position equation to calculate the updated position
+        self.center = self.previousPos + self.currentVelocity * deltaTime 
+        
+        # Resets the acceleration
         self.acceleration = vector2(0,0)
 
 
+    # Updates the angular velocity of the instanced object.
     def update_angular_velocity(self, deltaTime):
         # Updates the current and old angular velocity
         self.currentAngVelocity = self.prevAngVelocity + (self.angularAcceleration * deltaTime)
@@ -79,5 +73,6 @@ class rigidbody2d:
         self.prevRotation = self.currentRotation
         self.angularAcceleration = 0
 
+    # Gets the center of the object.
     def get_center(self):
         return self.center

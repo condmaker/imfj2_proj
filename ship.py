@@ -1,5 +1,5 @@
 import pygame
-from Rigidbody2d import *
+from rigidbody2d import *
 from vector2 import *
 
 class ship(rigidbody2d):
